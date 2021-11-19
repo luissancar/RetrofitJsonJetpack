@@ -34,7 +34,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 
 
-//https://www.youtube.com/watch?v=Ry7VvxDgrbk
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
