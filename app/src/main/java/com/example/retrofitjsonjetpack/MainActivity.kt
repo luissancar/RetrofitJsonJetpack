@@ -46,14 +46,12 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
 @Composable
-fun Llamada() {
-    val contest = LocalContext.current
+fun cargarJson(): UserInfo {
 
     var users by rememberSaveable { mutableStateOf(UserInfo()) }
-
     val user = UserInstance.userInterface.userInformation()
+
     user.enqueue(object : Callback<UserInfo> {
         override fun onResponse(
             call: Call<UserInfo>,
@@ -61,26 +59,28 @@ fun Llamada() {
         ) {
             val userInfo: UserInfo? = response.body()
             if (userInfo != null) {
-                //    Toast.makeText(contest, userInfo.toString(), Toast.LENGTH_SHORT).show()
-
                 users = userInfo
-
             }
-
         }
 
-        override fun onFailure(call: Call<UserInfo>, t: Throwable) {
-
-            Toast.makeText(contest, t.toString(), Toast.LENGTH_SHORT).show()
+        override fun onFailure(call: Call<UserInfo>, t: Throwable)
+        {
+           //Error
         }
 
     })
 
+    return users
+}
 
+
+@Composable
+fun Llamada() {
+    var lista= cargarJson()
     LazyColumn()
 
     {
-        items(users) { usu ->
+        items(lista) { usu ->
             Image(
                 painter = rememberImagePainter(usu.avatar_url),
                 contentDescription = "Imagen",
@@ -94,6 +94,6 @@ fun Llamada() {
 
         }
     }
-    // Text(text = users.toString())
+
 
 }
