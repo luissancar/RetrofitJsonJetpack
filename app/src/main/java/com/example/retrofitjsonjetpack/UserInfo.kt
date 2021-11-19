@@ -1,3 +1,3 @@
 package com.example.retrofitjsonjetpack
 
-class UserInfo: ArrayList<JsonUser>()
+class UserInfo : ArrayList<JsonUser>()
